@@ -4,6 +4,13 @@ let alunos = [];
 let currentId = 0;
 
 class AlunoService {
+  static add(data) {
+    const aluno = new AlunoModel(currentId, data.nome, data.curso, data.IRA);
+    alunos = alunos.concat([aluno]);
+    currentId += 1;
+    return aluno.id;
+  }
+
   static list() {
     return alunos;
   }

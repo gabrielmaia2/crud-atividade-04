@@ -25,4 +25,17 @@ AlunoRoutes.get('/getall', (_req, res) => {
   }
 });
 
+AlunoRoutes.post('/post', (req, res) => {
+  try {
+    const { nome, curso, IRA } = req.body;
+    const data = { nome, curso, IRA };
+
+    const id = AlunoService.add(data);
+    res.json({ success: true, id });
+  }
+  catch (error) {
+    res.json({ success: false });
+  }
+});
+
 module.exports = AlunoRoutes;
