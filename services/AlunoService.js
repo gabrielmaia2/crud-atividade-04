@@ -4,6 +4,14 @@ let alunos = [];
 let currentId = 0;
 
 class AlunoService {
+  static retrieve(id) {
+    const aluno = alunos.find((e) => e.id === id);
+    if (!aluno) {
+      throw Error('Invalid id');
+    }
+
+    return aluno;
+  }
 }
 
 module.exports = AlunoService;
