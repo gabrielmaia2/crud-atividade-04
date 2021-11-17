@@ -38,4 +38,16 @@ AlunoRoutes.post('/post', (req, res) => {
   }
 });
 
+AlunoRoutes.delete('/delete/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+
+    AlunoService.remove(id);
+    res.json(id);
+  }
+  catch (error) {
+    res.json({ success: false });
+  }
+});
+
 module.exports = AlunoRoutes;

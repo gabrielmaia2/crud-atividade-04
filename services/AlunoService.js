@@ -15,6 +15,14 @@ class AlunoService {
     return alunos;
   }
 
+  static remove(id) {
+    const oldLen = alunos.length;
+    alunos = alunos.filter((e) => e.id !== id);
+    if (alunos.length === oldLen) {
+      throw Error('Invalid id');
+    }
+  }
+
   static retrieve(id) {
     const aluno = alunos.find((e) => e.id === id);
     if (!aluno) {
