@@ -15,4 +15,14 @@ AlunoRoutes.get('/get/:id', (req, res) => {
   }
 });
 
+AlunoRoutes.get('/getall', (_req, res) => {
+  try {
+    const alunos = AlunoService.list();
+    res.json({ success: true, alunos });
+  }
+  catch (error) {
+    res.json({ success: false });
+  }
+});
+
 module.exports = AlunoRoutes;
