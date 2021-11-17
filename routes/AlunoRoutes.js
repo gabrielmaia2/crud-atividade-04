@@ -38,6 +38,20 @@ AlunoRoutes.post('/post', (req, res) => {
   }
 });
 
+AlunoRoutes.put('/put/:id', (req, res) => {
+  try {
+    const { nome, curso, IRA } = req.body;
+    const data = { nome, curso, IRA };
+    const { id } = req.params;
+
+    AlunoService.update(id, data);
+    res.json(id);
+  }
+  catch (error) {
+    res.json({ success: false });
+  }
+});
+
 AlunoRoutes.delete('/delete/:id', (req, res) => {
   try {
     const { id } = req.params;
