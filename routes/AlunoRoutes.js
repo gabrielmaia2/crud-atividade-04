@@ -45,7 +45,7 @@ AlunoRoutes.put('/put/:id', (req, res) => {
     const { id } = req.params;
 
     AlunoService.update(id, data);
-    res.json(id);
+    res.json({ success: true, id });
   }
   catch (error) {
     res.json({ success: false });
@@ -57,7 +57,7 @@ AlunoRoutes.delete('/delete/:id', (req, res) => {
     const { id } = req.params;
 
     AlunoService.remove(id);
-    res.json(id);
+    res.json({ success: true, id });
   }
   catch (error) {
     res.json({ success: false });
