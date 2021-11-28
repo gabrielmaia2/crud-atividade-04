@@ -1,9 +1,9 @@
 class AlunoModel {
   constructor(id, nome, curso, IRA) {
-    this.id = id;
-    this.nome = nome;
-    this.curso = curso;
-    this.IRA = IRA;
+    this.id = String(id);
+    this.nome = String(nome);
+    this.curso = String(curso);
+    this.IRA = String(IRA);
   }
 }
 
