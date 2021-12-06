@@ -4,64 +4,54 @@ const AlunoService = require('../services/AlunoService');
 const AlunoRoutes = express.Router();
 
 AlunoRoutes.get('/get/:id', (req, res) => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const aluno = AlunoService.retrieve(id);
-    res.json({ success: true, aluno });
-  }
-  catch (error) {
-    res.json({ success: false });
-  }
+  AlunoService.retrieve(
+    id,
+    (aluno) => res.json({ success: true, aluno }),
+    () => res.json({ success: false })
+  );
 });
 
 AlunoRoutes.get('/getall', (_req, res) => {
-  try {
-    const alunos = AlunoService.list();
-    res.json({ success: true, alunos });
-  }
-  catch (error) {
-    res.json({ success: false });
-  }
+  AlunoService.list(
+    (alunos) => res.json({ success: true, alunos }),
+    () => res.json({ success: false })
+  );
 });
 
 AlunoRoutes.post('/post', (req, res) => {
-  try {
-    const { nome, curso, IRA } = req.body;
-    const data = { nome, curso, IRA };
+  const { nome, curso, IRA } = req.body;
+  const data = { nome, curso, IRA };
 
-    const id = AlunoService.add(data);
-    res.json({ success: true, id });
-  }
-  catch (error) {
-    res.json({ success: false });
-  }
+  AlunoService.add(
+    data,
+    (_id) => res.json({ success: true, _id }),
+    () => res.json({ success: false })
+  );
 });
 
 AlunoRoutes.put('/put/:id', (req, res) => {
-  try {
-    const { nome, curso, IRA } = req.body;
-    const data = { nome, curso, IRA };
-    const { id } = req.params;
+  const { nome, curso, IRA } = req.body;
+  const data = { nome, curso, IRA };
+  const { id } = req.params;
 
-    AlunoService.update(id, data);
-    res.json({ success: true, id });
-  }
-  catch (error) {
-    res.json({ success: false });
-  }
+  AlunoService.update(
+    id,
+    data,
+    (_id) => res.json({ success: true, _id }),
+    () => res.json({ success: false })
+  );
 });
 
 AlunoRoutes.delete('/delete/:id', (req, res) => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    AlunoService.remove(id);
-    res.json({ success: true, id });
-  }
-  catch (error) {
-    res.json({ success: false });
-  }
+  AlunoService.remove(
+    id,
+    (_id) => res.json({ success: true, _id }),
+    () => res.json({ success: false })
+  );
 });
 
 module.exports = AlunoRoutes;
