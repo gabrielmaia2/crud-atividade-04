@@ -3,11 +3,11 @@ const AlunoService = require('../services/AlunoService');
 
 const AlunoRoutes = express.Router();
 
-AlunoRoutes.get('/get/:id', (req, res) => {
+AlunoRoutes.get('/get/:_id', (req, res) => {
   try {
-    const { id } = req.params;
+    const { _id } = req.params;
 
-    const aluno = AlunoService.retrieve(id);
+    const aluno = AlunoService.retrieve(_id);
     res.json({ success: true, aluno });
   }
   catch (error) {
@@ -30,34 +30,34 @@ AlunoRoutes.post('/post', (req, res) => {
     const { nome, curso, IRA } = req.body;
     const data = { nome, curso, IRA };
 
-    const id = AlunoService.add(data);
-    res.json({ success: true, id });
+    const _id = AlunoService.add(data);
+    res.json({ success: true, _id });
   }
   catch (error) {
     res.json({ success: false });
   }
 });
 
-AlunoRoutes.put('/put/:id', (req, res) => {
+AlunoRoutes.put('/put/:_id', (req, res) => {
   try {
     const { nome, curso, IRA } = req.body;
     const data = { nome, curso, IRA };
-    const { id } = req.params;
+    const { _id } = req.params;
 
-    AlunoService.update(id, data);
-    res.json({ success: true, id });
+    AlunoService.update(_id, data);
+    res.json({ success: true, _id });
   }
   catch (error) {
     res.json({ success: false });
   }
 });
 
-AlunoRoutes.delete('/delete/:id', (req, res) => {
+AlunoRoutes.delete('/delete/:_id', (req, res) => {
   try {
-    const { id } = req.params;
+    const { _id } = req.params;
 
-    AlunoService.remove(id);
-    res.json({ success: true, id });
+    AlunoService.remove(_id);
+    res.json({ success: true, _id });
   }
   catch (error) {
     res.json({ success: false });

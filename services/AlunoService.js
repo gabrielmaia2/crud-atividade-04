@@ -8,15 +8,15 @@ class AlunoService {
     const aluno = new AlunoModel(currentId, data.nome, data.curso, data.IRA);
     alunos = alunos.concat([aluno]);
     currentId += 1;
-    return aluno.id;
+    return aluno._id;
   }
 
   static list() {
     return alunos;
   }
 
-  static update(id, data) {
-    const aluno = alunos.find((e) => e.id === id);
+  static update(_id, data) {
+    const aluno = alunos.find((e) => e._id === _id);
     if (!aluno) {
       throw Error('Invalid id');
     }
@@ -26,16 +26,16 @@ class AlunoService {
     aluno.IRA = data.IRA;
   }
 
-  static remove(id) {
+  static remove(_id) {
     const oldLen = alunos.length;
-    alunos = alunos.filter((e) => e.id !== id);
+    alunos = alunos.filter((e) => e._id !== _id);
     if (alunos.length === oldLen) {
       throw Error('Invalid id');
     }
   }
 
-  static retrieve(id) {
-    const aluno = alunos.find((e) => e.id === id);
+  static retrieve(_id) {
+    const aluno = alunos.find((e) => e._id === _id);
     if (!aluno) {
       throw Error('Invalid id');
     }
