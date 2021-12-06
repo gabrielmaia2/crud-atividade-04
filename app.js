@@ -2,6 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+require('./db/mongodb');
+
 const AlunoRoutes = require('./routes/AlunoRoutes');
 
 const app = express();
