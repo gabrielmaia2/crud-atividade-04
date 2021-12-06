@@ -8,15 +8,15 @@ AlunoRoutes.get('/get/:id', (req, res) => {
 
   AlunoService.retrieve(
     id,
-    (aluno) => res.json({ success: true, aluno }),
-    () => res.json({ success: false })
+    (aluno) => res.json(aluno),
+    (err) => res.status(500).json(err)
   );
 });
 
 AlunoRoutes.get('/getall', (_req, res) => {
   AlunoService.list(
-    (alunos) => res.json({ success: true, alunos }),
-    () => res.json({ success: false })
+    (alunos) => res.json(alunos),
+    (err) => res.status(500).json(err)
   );
 });
 
@@ -26,8 +26,8 @@ AlunoRoutes.post('/post', (req, res) => {
 
   AlunoService.add(
     data,
-    (_id) => res.json({ success: true, _id }),
-    () => res.json({ success: false })
+    (_id) => res.status(201).json(_id),
+    (err) => res.status(500).json(err)
   );
 });
 
@@ -39,8 +39,8 @@ AlunoRoutes.put('/put/:id', (req, res) => {
   AlunoService.update(
     id,
     data,
-    (_id) => res.json({ success: true, _id }),
-    () => res.json({ success: false })
+    (_id) => res.status(201).json(_id),
+    (err) => res.status(500).json(err)
   );
 });
 
@@ -49,8 +49,8 @@ AlunoRoutes.delete('/delete/:id', (req, res) => {
 
   AlunoService.remove(
     id,
-    (_id) => res.json({ success: true, _id }),
-    () => res.json({ success: false })
+    (_id) => res.json(_id),
+    (err) => res.status(500).json(err)
   );
 });
 
