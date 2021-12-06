@@ -29,6 +29,11 @@ class AlunoService {
       .catch(err);
   }
 
+  static retrieve(_id, res, err = () => {}) {
+    AlunoModel.findById(_id)
+      .then(res)
+      .catch(err);
+  }
 }
 
 module.exports = AlunoService;

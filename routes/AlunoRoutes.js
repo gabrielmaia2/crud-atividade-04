@@ -3,6 +3,16 @@ const AlunoService = require('../services/AlunoService');
 
 const AlunoRoutes = express.Router();
 
+AlunoRoutes.get('/get/:id', (req, res) => {
+  const { id } = req.params;
+
+  AlunoService.retrieve(
+    id,
+    (aluno) => res.json({ success: true, aluno }),
+    () => res.json({ success: false })
+  );
+});
+
 AlunoRoutes.get('/getall', (_req, res) => {
   AlunoService.list(
     (alunos) => res.json({ success: true, alunos }),
