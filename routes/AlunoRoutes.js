@@ -21,4 +21,17 @@ AlunoRoutes.post('/post', (req, res) => {
   );
 });
 
+AlunoRoutes.put('/put/:id', (req, res) => {
+  const { nome, curso, IRA } = req.body;
+  const data = { nome, curso, IRA };
+  const { id } = req.params;
+
+  AlunoService.update(
+    id,
+    data,
+    (_id) => res.json({ success: true, _id }),
+    () => res.json({ success: false })
+  );
+});
+
 module.exports = AlunoRoutes;
