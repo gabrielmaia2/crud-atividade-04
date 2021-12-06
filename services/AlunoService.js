@@ -9,6 +9,12 @@ class AlunoService {
       .catch(err);
   }
 
+  static list(res, err = () => {}) {
+    AlunoModel.find()
+      .then(res)
+      .catch(err);
+  }
+
 }
 
 module.exports = AlunoService;
