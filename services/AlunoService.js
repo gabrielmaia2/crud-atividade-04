@@ -23,6 +23,12 @@ class AlunoService {
       .catch(err);
   }
 
+  static remove(_id, res, err = () => {}) {
+    AlunoModel.findByIdAndDelete(_id)
+      .then((a) => res(a._id))
+      .catch(err);
+  }
+
 }
 
 module.exports = AlunoService;
